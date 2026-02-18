@@ -1,37 +1,48 @@
 const hamburger = document.getElementById("hamburger");
 const menu = document.getElementById("mainMenu");
+
 const servicesToggle = document.getElementById("servicesToggle");
 const servicesMenu = document.getElementById("servicesMenu");
+const dropdown = servicesToggle.closest(".dropdown");
+
 const header = document.getElementById("siteHeader");
 
-/* Hamburger */
-hamburger.addEventListener("click", () => {
+/* ================= HAMBURGER ================= */
+hamburger.addEventListener("click", function () {
   menu.classList.toggle("show");
 });
 
-/* Services dropdown click */
-servicesToggle.addEventListener("click", (e) => {
+/* ================= SERVICES CLICK ================= */
+servicesToggle.addEventListener("click", function (e) {
   e.preventDefault();
   e.stopPropagation();
-  servicesMenu.classList.toggle("show");
-});
 
-/* Click outside close */
-document.addEventListener("click", (e) => {
-  if (
-    !servicesToggle.contains(e.target) &&
-    !servicesMenu.contains(e.target)
-  ) {
+  if (servicesMenu.classList.contains("show")) {
+    // Close manually
     servicesMenu.classList.remove("show");
+    servicesMenu.classList.add("clicked");
+  } else {
+    // Open manually
+    servicesMenu.classList.add("show");
+    servicesMenu.classList.remove("clicked");
   }
 });
 
-/* Auto close menu */
-document.querySelectorAll(".menu a").forEach(link => {
-  link.addEventListener("click", () => {
+/* ================= OUTSIDE CLICK ================= */
+document.addEventListener("click", function (e) {
 
-    // Services toggle par menu close nahi hoga
-    if (link.id !== "servicesToggle") {
+  if (!dropdown.contains(e.target)) {
+    servicesMenu.classList.remove("show");
+    servicesMenu.classList.remove("clicked");
+  }
+
+});
+
+/* ================= MOBILE AUTO CLOSE ================= */
+document.querySelectorAll(".menu a").forEach(link => {
+  link.addEventListener("click", function () {
+
+    if (this.id !== "servicesToggle" && window.innerWidth <= 768) {
       menu.classList.remove("show");
       servicesMenu.classList.remove("show");
     }
@@ -39,8 +50,7 @@ document.querySelectorAll(".menu a").forEach(link => {
   });
 });
 
-
-/* Sticky header */
-window.addEventListener("scroll", () => {
+/* ================= STICKY HEADER ================= */
+window.addEventListener("scroll", function () {
   header.classList.toggle("sticky", window.scrollY > 80);
 });
