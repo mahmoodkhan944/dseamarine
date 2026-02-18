@@ -1,6 +1,6 @@
 :root {
-  --deep-teal: #004f55;
-  --light-aqua: #bfeeee;
+  --deep-teal: #d69284;
+  --light-aqua: #296d7b;
   --card-bg: #01363b;
   --text-light: #e6ffff;
 }
@@ -93,6 +93,25 @@
   opacity: 0.9;
   color: var(--text-light);
 }
+
+/* Ship Image Top Center */
+.top-ship-image {
+  text-align: center;
+  margin: 60px 0 40px;
+}
+
+.top-ship-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  transition: 0.4s ease;
+}
+
+.top-ship-image img:hover {
+  transform: scale(1.03);
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
