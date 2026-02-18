@@ -9,4 +9,5 @@ function showSlide(index) {
 setInterval(() => {
   current = (current + 1) % slides.length;
   showSlide(current);
-}, 4500);
+}, 1500);
+
