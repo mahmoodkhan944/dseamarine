@@ -8,6 +8,29 @@
 <title>Contact Us | D Sea Marine</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/contact.css">
+<style>
+    .alert-message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      display: none;
+    }
+
+    .alert-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block;
+    }
+
+    .alert-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -29,7 +52,7 @@
       <li><a href="about.html">About</a></li>
 
       <li class="dropdown">
-        <a href="#" id="servicesToggel">Services ▾</a>
+        <a href="#" id="servicesToggle">Services ▾</a>
         <ul class="dropdown-menu" id="servicesMenu">
           <li><a href="maritime-consultancy.html">Maritime Consultancy</a></li>
           <li><a href="ship-charter.html">Ship Charter Services</a></li>
@@ -53,7 +76,7 @@
 <section class="page-hero">
   <div class="hero-overlay"></div>
 
-  <div class="hero-content"></div>
+  <div class="hero-content">
     <span class="hero-subtitle">Get in Touch <br>with Us</span>
     
     </div>
@@ -71,7 +94,8 @@
       <h2>Contact Information</h2>
 
       <div class="info-box">
-        <div class="icon">📞</div>
+        <div class="icon">
+          <a href="tel:+919322321822">📞</a></div>
         <div>
           <h4>Contact Number</h4>
           <p>+97140000000</p>
@@ -79,18 +103,22 @@
       </div>
 
       <div class="info-box">
-        <div class="icon">📠</div>
+        <div class="icon">
+          <a href="mailto:info@dsea-marine.com">✉️</a>
+        </div>
         <div>
-          <h4>FAX</h4>
-          <p>+97140000000</p>
+          <h4>Email US</h4>
+          <p>info@dsea-marine.com</p>
         </div>
       </div>
 
       <div class="info-box">
-        <div class="icon">✉️</div>
+        <div class="icon">
+          <a href="mailto:operations@dsea-marine.com">✉️</a>
+        </div>
         <div>
           <h4>Email US</h4>
-          <p>mail@dseamarine.com</p>
+          <p>operations@dsea-marine.com</p>
         </div>
       </div>
     </div>
@@ -99,23 +127,24 @@
     <div class="contact-form">
       <h2>Feedback form</h2>
 
-      <form id="whatsappForm">
+      <form id="contactForm">
   <div class="form-grid">
-    <input type="text" name="name" placeholder="Full Name" required>
-    <input type="email" name="email" placeholder="Email Address">
-
-    <input type="text" name="phone" placeholder="Phone Number" required>
-    <input type="text" name="subject" placeholder="Subject">
+    <input type="text" name="user_name" placeholder="Full Name" required>
+<input type="email" name="user_email" placeholder="Your Email" required>
+<input type="tel" name="user_phone" placeholder="Phone Number" required>
   </div>
+<textarea name="message" placeholder="Your Message" required></textarea>
 
-  <input type="text" name="company" placeholder="Company Name" class="full">
-
-  <textarea name="message" placeholder="Your Message" required></textarea>
 
   <button type="submit" class="btn">
     SUBMIT
   </button>
 </form>
+<div id="responseMessage" class="alert-message"></div>
+        </div>
+<p id="formStatus"></p>
+    </div>
+
 
     </div>
 
@@ -218,44 +247,15 @@
 </footer>
 
 <script src="js/menu.js"></script>
-
-<script>
-document.getElementById("whatsappForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  const name = this.name.value;
-  const email = this.email.value;
-  const phone = this.phone.value;
-  const subject = this.subject.value;
-  const company = this.company.value;
-  const message = this.message.value;
-
-  const whatsappNumber = "+918830681496"; // ✅ WITHOUT + sign
-
-  const whatsappMessage =
-    `*New Contact Form Submission*%0A%0A` +
-    `*Name:* ${name}%0A` +
-    `*Email:* ${email}%0A` +
-    `*Phone:* ${phone}%0A` +
-    `*Company:* ${company}%0A` +
-    `*Subject:* ${subject}%0A%0A` +
-    `*Message:*%0A${message}`;
-
-  const whatsappURL =
-    `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-
-  window.open(whatsappURL, "_blank");
-});
-</script>
-
-<a href="https://wa.me/8830681496" 
+<a href="https://wa.me/918830681496" 
    class="whatsapp-float" 
    target="_blank" 
    title="Chat on WhatsApp">
   💬
 </a>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script src="js/contact.js"></script>
 
 </body>
 </html>
-
-
