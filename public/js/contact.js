@@ -1,25 +1,30 @@
-// EmailJS Init
+// Initialize EmailJS
 (function () {
-  emailjs.init("LVv0L1UFTdGcoB6KP"); // ✅ Public Key
+  emailjs.init("LVvOL1UFtdGcob6KP"); // 🔥 Replace with your Public Key
 })();
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
+const form = document.getElementById("contactForm");
+const responseMessage = document.getElementById("responseMessage");
+
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
+  responseMessage.innerHTML = "Sending...";
+  responseMessage.className = "alert-message";
+  responseMessage.style.display = "block";
+
   emailjs.sendForm(
-    "service_95lznnr",          // ✅ Service ID (dashboard se)
-    "d_sea_marine_contact",    // ✅ Template ID (dashboard se)
+    "service_95lznnr",     // 🔥 Replace with your Service ID
+    "template_o44ewee",    // 🔥 Replace with your Template ID
     this
   )
-  .then(function (response) {
-    document.getElementById("formStatus").innerHTML =
-      "<span style='color:green'>Message sent successfully.</span>";
-    document.getElementById("contactForm").reset();
-    console.log("SUCCESS!", response.status, response.text);
+  .then(function () {
+    responseMessage.innerHTML = "✅ Message Sent Successfully!";
+    responseMessage.className = "alert-message success";
+    form.reset();
   })
   .catch(function (error) {
-    document.getElementById("formStatus").innerHTML =
-      "<span style='color:red'>Error sending message. Please try again.</span>";
-    console.error("FAILED...", error);
+    responseMessage.innerHTML = "❌ Failed to Send Message!";
+    responseMessage.className = "alert-message error";
   });
 });
